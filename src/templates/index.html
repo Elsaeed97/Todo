@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %} Tasks {% endblock title %}
+
+
+{% block content %}
+
+
+<div class="center-column">
+	 <h1>Your Tasks</h1>
+	 <form method="POST" action="."> 
+	 	{% csrf_token %}
+	 	{{ form.title }}
+	 	<input class="btn btn-info"  type="submit" name="add" value="Add Task">
+	 </form>
+	 <div class="todo-list">
+	 {% for task in tasks  %}
+	 	<div class="item-row">
+
+	 		 <a class="btn btn-sm btn-info" href="{% url 'update' task.id %}"> Update</a> 
+	 		 <a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}"> Delete</a> 
+	 		 {%if task.completed %}
+	 		 <strike>	{{task.title}} </strike>
+	 		 {% else %}
+	 		 <span>{{task.title}} </span> 
+	 		 {% endif %}
+	 	</div>
+	{% endfor %}
+	</div>
+</div>
+{% endblock content %}

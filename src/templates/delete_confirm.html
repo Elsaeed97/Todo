@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Confirm Delete{%endblock title %}
+
+
+{% block content %}
+
+	
+
+<div class="center-column">
+	<h1>Are You Sure You Want To Delete "{{ task }}" ?</h1>
+
+	 <form method="POST" action="." style="display: inline;"> 
+	 	{% csrf_token %}
+	 	<a class="btn btn-info"  href="{% url 'index' %}" style="width: 100%">Cancel</a>
+	 	<input class="btn btn-danger"  type="submit" name="add" value="Delete Task" >
+	 </form>
+</div>	
+	 
+
+	 
+{% endblock content %}
